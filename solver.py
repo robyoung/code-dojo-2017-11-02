@@ -15,7 +15,23 @@ def pairs(children):
 def perform_ops(paired_children):
     pass
 
-if __name__ == "__main__":
+def demo():
     for i in pairs([4,5,2,8,6]):
         for j in pairs(i):
             print(j)
+
+
+def make_n(n=5):
+    print(n)
+    p = list(pairs([4,5,2,8,6]))
+    print(p)
+    while len(p[0]) > n:
+        p = list(pairs(set(p)))
+        print(p)
+    return p
+
+if __name__ == "__main__":
+    # print(n())
+    # print(make_n(2))
+    # print(list(pairs([1, 2, 3, 4, 5])))
+    demo()

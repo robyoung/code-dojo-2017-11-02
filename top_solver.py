@@ -1,4 +1,4 @@
-
+import random
 nums = [5, 7, 8, 25, 100]
 operators = ['-', '+', '*', '/']
 
@@ -12,10 +12,19 @@ tree = ('-', [
 
 
 def make_tree(numbers, target):
-    numbers = [n for n in numbers]
-    node = ('+', (numbers.pop(), numbers.pop()))
+    numbers = numbers.copy()
+    node = numbers.pop()
     while numbers:
         node = ('+', (node, numbers.pop()))
+    return node
+
+
+def slightly_less_naive(numbers, target):
+    numbers = numbers.copy()
+    operators = '+ - * /'.split()
+    node = numbers.pop()
+    while numbers:
+        node = (random.choice(operators), (node, numbers.pop()))
     return node
 
 
@@ -33,6 +42,7 @@ def walk_tree(tree):
 def solve(numbers, target, solver):
     solution = solver(numbers, target)
     return walk_tree(solution)
+
 
 if __name__ == '__main__':
     answer = walk_tree(make_tree(nums))
